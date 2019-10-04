@@ -1,0 +1,65 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: rgba($color-white, .6);
+  padding: 6rem 6rem 6rem 9rem;
+  transform: skewX(-12deg);
+
+  @include respond(tab-port) {
+    width: 100%;
+    transform: none;
+    padding: 3rem 3rem 3rem 6rem;
+
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    //so that text will run in this shape
+    shape-outside: circle(50% at 50% 50%);
+
+    //so that image is clipped in same circle
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem) skewX(12deg);
+    @include respond(tab-port) {
+      transform: translateX(-3rem);
+    }
+    position: relative;
+  }
+
+  &__img {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    transition: all .2s;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+    @include respond(tab-port) {
+      transform: none;
+    }
+  }
+
+  &__caption {
+    @include absCenter;
+
+    text-transform: uppercase;
+    text-align: center;
+    color: $color-white;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    filter: blur(2px) brightness(80%);
+    transform: translateX(-4rem) scale(1);
+  }
+}
